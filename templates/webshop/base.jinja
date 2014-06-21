@@ -152,19 +152,19 @@
         <div class="row main-navigation">
           <div class="col-md-12">
             <ul class="list-inline" id="nav-list">
-              {% for category in root_categories() %}
+              {% for child_node in get_using_xml_id('nereid_webshop', 'root_node').children %}
               <li>
-                <a class="main-link" href="{{ url_for('product.category.render', uri=category.uri) }}">{{ category.name }}</a>
-                {% if category.childs %}
+                <a class="main-link" href="{{ url_for('product.tree_node.render', active_id=child_node.id, slug=child_node.slug)}}">{{ child_node.name }}</a>
+                {% if child_node.children %}
                 <!-- Dropdown Menu Starts-->
                 <div class="container menbg">
                   <div class="row">
-                    {% for child in category.childs %}
+                    {% for child in child_node.children %}
                     <div class="col-md-2">
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('product.category.render', uri=child.uri) }}"><strong>{{ child.name }}</strong></a></li>
-                        {% for grandchild in child.childs %}
-                        <li><a href="{{ url_for('product.category.render', uri=grandchild.uri) }}">{{ grandchild.name }}</a></li>
+                        <li><a href="{{ url_for('product.tree_node.render', active_id=child.id, slug=child.slug)}}"><strong>{{ child.name }}</strong></a></li>
+                        {% for grandchild in child.children %}
+                        <li><a href="{{ url_for('product.tree_node.render', active_id=grandchild.id, slug=grandchild.slug)}}">{{ grandchild.name }}</a></li>
                         {% endfor %}
                       </ul>
                     </div>

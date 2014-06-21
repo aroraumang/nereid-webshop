@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tryton>
+    <data>
+        <record id="root_node" model="product.tree_node">
+            <field name="name">Root Node</field>
+            <field name="type_">catalog</field>
+            <field name="slug">root-node</field>
+        </record>
+    </data>
+</tryton>
